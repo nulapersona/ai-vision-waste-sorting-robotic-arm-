@@ -1,0 +1,86 @@
+#include <Servo.h>
+
+Servo baseServo;
+Servo armServo;
+
+char data;
+
+void setup()
+{
+    Serial.begin(9600);
+
+    baseServo.attach(9);
+    armServo.attach(10);
+}
+
+void loop()
+{
+    if(Serial.available())
+    {
+        data = Serial.read();
+
+        switch(data)
+        {
+
+            case 'P':
+                sortPlastic();
+                break;
+
+            case 'M':
+                sortMetal();
+                break;
+
+            case 'A':
+                sortPaper();
+                break;
+
+            case 'G':
+                sortGlass();
+                break;
+
+            case 'O':
+                sortOrganic();
+                break;
+        }
+    }
+}
+
+void sortPlastic()
+{
+    baseServo.write(40);
+    delay(1000);
+    armServo.write(120);
+    delay(1000);
+}
+
+void sortMetal()
+{
+    baseServo.write(80);
+    delay(1000);
+    armServo.write(120);
+    delay(1000);
+}
+
+void sortPaper()
+{
+    baseServo.write(120);
+    delay(1000);
+    armServo.write(120);
+    delay(1000);
+}
+
+void sortGlass()
+{
+    baseServo.write(160);
+    delay(1000);
+    armServo.write(120);
+    delay(1000);
+}
+
+void sortOrganic()
+{
+    baseServo.write(180);
+    delay(1000);
+    armServo.write(120);
+    delay(1000);
+}
